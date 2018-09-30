@@ -1,5 +1,6 @@
 # prakitika3ikbo16-17-Boldyrev-Grigoriy
-#Shape
+# Задание 1
+# Shape
 public abstract class Shape
 {
     protected String color;
@@ -35,7 +36,7 @@ public abstract class Shape
     public  abstract  String toString();
 }
 
-#Circle
+# Circle
 import java.math.*;
 
 public class Circle extends Shape {
@@ -69,7 +70,7 @@ public class Circle extends Shape {
         return "Shape: circle, radius: "+this.radius+", color"+this.color;
     }
 }
-#Rectangle
+# Rectangle
 public class Rectangle extends Shape {
     protected double width;
     protected double length;
@@ -122,7 +123,7 @@ public class Rectangle extends Shape {
     }
 }
 
-#Square
+# Square
 public class Square extends Rectangle {
         protected double side;
         public  Square(){
@@ -165,7 +166,7 @@ public class Square extends Rectangle {
         }
     }
     
-    #Main
+# Main
     public class Main {
     public static main()
     Shape s1 = new Circle(5.5, "RED", false);  // Upcast Circle to Shape
@@ -217,3 +218,128 @@ System.out.println(s3.getLength());
     //не определенны методы в классе фигуры
 }
 
+
+# Задание 2
+# Movable
+public interface Movable {
+    public void moveUp();
+    public void moveDown();
+    public void moveLeft();
+    public void moveRight();
+}
+
+# MovableCircle
+
+public class MovableCircle extends MovablePoint implements Movable  {
+    public int x;
+    public int y;
+    public int xSpeed;
+    public int ySpeed;
+    private int radius;
+    private MovablePoint center;
+    MovableCircle(int x, int y, int xSpeed, int ySpeed, int radius) {
+        this.x = x;
+        this.y = y;
+        this.xSpeed = xSpeed;
+        this.ySpeed = ySpeed;
+        this.radius = radius;
+    }
+    @Override
+    public String toString() {
+        return "x: " + x + ", y: " + y + ", xSpeed: " + xSpeed + ", ySpeed: " + ySpeed + ", radius: " + radius + "\n";
+    }
+    public void moveUp() {
+        y+= 1;
+    }
+    public void moveDown() {
+        y-= 1;
+    }
+    public void moveLeft() {
+        x-= 1;
+    }
+    public void moveRight() {
+        x+= 1;
+    }
+}
+
+# MovablePoint
+
+public class MovablePoint implements Movable {
+    public int x;
+    public int y;
+    public int xSpeed;
+    public int ySpeed;
+    MovablePoint() {
+        x = 1;
+        y = 1;
+        xSpeed = 1;
+        ySpeed = 1;
+    }
+    MovablePoint(int x, int y, int xSpeed, int ySpeed) {
+        this.x = x;
+        this.y = y;
+        this.xSpeed = xSpeed;
+        this.ySpeed = ySpeed;
+    }
+    @Override
+    public String toString() {
+        return "x: " + x + ", y: " + y + ", xSpeed: " + xSpeed + ", ySpeed: " + ySpeed + "\n";
+    }
+    public void moveUp() {
+        y+= 1;
+    }
+    public void moveDown() {
+        y-= 1;
+    }
+    public void moveLeft() {
+        x-= 1;
+    }
+    public void moveRight() {
+        x+= 1;
+    }
+}
+
+# MovableRectangle
+
+public class MovableRectangle extends MovablePoint implements Movable  {
+    public int x;
+    public int y;
+    public int xSpeed;
+    public int ySpeed;
+    private MovablePoint topLeft;
+    private MovablePoint bottomRight;
+    MovableRectangle(int x, int y, int xSpeed, int ySpeed) {
+        x = 1;
+        y = 1;
+        xSpeed = 1;
+        ySpeed = 1;
+    }
+    @Override
+    public String toString() {
+        return "x: " + x + ", y: " + y + ", xSpeed: " + xSpeed + ", ySpeed: " + ySpeed + "\n";
+    }
+    public void moveUp() {
+        y+= 1;
+    }
+    public void moveDown() {
+        y-= 1;
+    }
+    public void moveLeft() {
+        x-= 1;
+    }
+    public void moveRight() {
+        x+= 1;
+    }
+}
+
+
+
+
+
+# Ошибки в первом задании
+
+System.out.println(s1.getRadius()); // Строка 9, у фигуры фигура нет метода получить радиус
+Shape s2 = new Shape(); // Класс Shape является астрактным, нельзя объявить
+System.out.println(s3.getLength()); // В классе Sharp нет метода getLength
+System.out.println(s4.getSide()); // В классе Sharp нет метода getSide
+System.out.println(r2.getSide()); // В классе Rectangle нет метода getSize
